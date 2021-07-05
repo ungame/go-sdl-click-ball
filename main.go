@@ -21,11 +21,15 @@ func main() {
 	}
 	defer sdl.Quit()
 
+	sdl.Log("SDL initialized successffuly!")
+
 	window, err := sdl.CreateWindow("Go Click Ball", sdl.WINDOWPOS_CENTERED, sdl.WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, sdl.WINDOW_SHOWN|sdl.WINDOW_RESIZABLE)
 	if err != nil {
 		panic(err)
 	}
 	defer window.Destroy()
+
+	sdl.Log("Window created successffuly!")
 
 	renderer, err := sdl.CreateRenderer(window, -1, sdl.RENDERER_ACCELERATED)
 	if err != nil {
@@ -33,10 +37,14 @@ func main() {
 	}
 	defer renderer.Destroy()
 
+	sdl.Log("Renderer created successffuly!")
+
 	bmp, err := sdl.LoadBMP("ball.bmp")
 	if err != nil {
 		panic(err)
 	}
+
+	sdl.Log("BMP loaded successffuly!")
 
 	texture, err := renderer.CreateTextureFromSurface(bmp)
 	if err != nil {
@@ -44,6 +52,8 @@ func main() {
 	}
 	bmp.Free()
 	defer texture.Destroy()
+
+	sdl.Log("Texture create successfully!")
 
 	_, _, width, height, err := texture.Query()
 	if err != nil {
